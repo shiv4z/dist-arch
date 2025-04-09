@@ -1,0 +1,6 @@
+package in.gov.egs.modal;
+
+public enum ERole {
+	USER,
+    ADMIN
+}

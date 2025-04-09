@@ -1,0 +1,19 @@
+package in.gov.egs.serviceImpl;
+
+import in.gov.egs.feign.FeignClientInterface;
+
+public class FeignClientService {
+	
+	private FeignClientInterface feignClient;
+
+	public FeignClientService(FeignClientInterface feignClient) {
+		this.feignClient = feignClient;
+	}
+	
+	public String getMsg() {
+		return "from Feign Client"+ feignClient.fetchWelcomeMsg();
+	}
+	
+
+	
+}

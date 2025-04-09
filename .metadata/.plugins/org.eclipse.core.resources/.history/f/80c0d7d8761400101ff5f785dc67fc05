@@ -1,0 +1,24 @@
+package in.gov.egs;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import in.gov.egs.serviceImpl.FeignClientService;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class RestApi1Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(RestApi1Application.class, args);
+		FeignClientService bean = context.getBean(FeignClientService.class);
+		for (int i = 0; i < 10; i++) {
+		    System.out.println(bean.getMsg());
+		}
+	}
+
+}

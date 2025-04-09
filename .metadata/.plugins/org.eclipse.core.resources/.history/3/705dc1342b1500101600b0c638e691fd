@@ -1,0 +1,34 @@
+package in.gov.egs.log;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+import de.codecentric.boot.admin.client.registration.ApplicationRegistrator;
+
+@Component
+public class AdminClientDynamicPortRegistrar implements ApplicationListener<WebServerInitializedEvent> {
+
+    private int actualPort;
+
+    @Autowired(required = false)
+    private ApplicationRegistrator registrator;
+
+    @Override
+    public void onApplicationEvent(WebServerInitializedEvent event) {
+        this.actualPort = event.getWebServer().getPort();
+    }
+
+    @EventListener
+    public void onAppReady(org.springframework.boot.context.event.ApplicationReadyEvent event) {
+        if (registrator != null && actualPort > 0) {
+            String serviceUrl = "http://localhost:" + actualPort;
+            System.setProperty("spring.boot.admin.client.instance.service-url", serviceUrl);
+            System.out.println("Re-registering Spring Boot Admin client with: " + serviceUrl);
+            registrator.register(); // 🔥 This forces re-registration
+        }
+    }
+}
+

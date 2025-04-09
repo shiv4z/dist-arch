@@ -1,0 +1,5 @@
+package in.gov.egs.feign;
+
+public interface FeignClient {
+
+}

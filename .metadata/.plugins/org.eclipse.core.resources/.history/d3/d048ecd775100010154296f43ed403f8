@@ -1,0 +1,45 @@
+//package in.gov.egs.controller;
+//
+//public class AuthController {
+//
+//
+//    @Autowired
+//    private AuthService authService;
+//
+//    public static final String TOKEN_PREFIX = "Bearer ";
+//    public static final String HEADER_STRING = "Authorization";
+//
+//    @PostMapping("/authenticate")
+//    public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse repoResponse) throws IOException, JSONException {
+//        try{
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
+//                    authenticationRequest.getPassword()));
+//        }catch (BadCredentialsException e){
+//            throw new BadCredentialsException("Incorrect Username and Password.");
+//        }
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+//        Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
+//        final String jwt = jwtUtil.generationToken(userDetails.getUsername());
+//        if(optionalUser.isPresent()){
+//            repoResponse.getWriter().write(new JSONObject()
+//                    .put("UserId", optionalUser.get().getId())
+//                    .put("role", optionalUser.get().getRole())
+//                    .put("token", jwt)
+//                    .toString());
+//        }
+//
+//        repoResponse.addHeader("Access-Control-Expose-Headers", "Authorization");
+//        repoResponse.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER" +
+//                "X-Requested-With, Content-Type, Accept, X-Custom-header");
+//        repoResponse.addHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
+//    }
+//
+//    @PostMapping("/sign-up")
+//    public ResponseEntity<?> signupUser(@RequestBody SignupRequest signupRequest){
+//        if(authService.hasUserWithEmail(signupRequest.getEmail())){
+//            return new ResponseEntity<>("User already exists", HttpStatus.NOT_ACCEPTABLE);
+//        }
+//        UserDto userDto = authService.createUser(signupRequest);
+//        return new ResponseEntity<>(userDto, HttpStatus.OK);
+//    }
+//}

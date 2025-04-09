@@ -1,0 +1,22 @@
+package in.gov.egs.config;
+
+import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+@Configuration
+public class AppConfig {
+	
+	@Bean
+	public ApplicationListener<WebServerInitializedEvent> onServerStart(Environment environment, AdminProperties adminProperties) {
+	    return event -> {
+	        int port = event.getWebServer().getPort();
+	        String serviceUrl = "http://localhost:" + port;
+	        System.setProperty("spring.boot.admin.client.instance.service-url", serviceUrl);
+	    };
+	}
+
+
+}

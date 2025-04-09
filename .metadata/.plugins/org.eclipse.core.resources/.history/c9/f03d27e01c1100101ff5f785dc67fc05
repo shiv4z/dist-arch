@@ -1,0 +1,30 @@
+package in.gov.egs.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+
+import in.gov.egs.security.jwt.AuthEntryPointJwt;
+import in.gov.egs.security.jwt.AuthTokenFilter;
+import in.gov.egs.security.services.UserDetailsServiceImpl;
+
+@Configuration
+@EnableMethodSecurity
+public class WebSecurityConfig {
+	
+	  private UserDetailsServiceImpl userDetailsService;
+	  private AuthEntryPointJwt unauthorizedHandler;
+	  
+	  public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, AuthEntryPointJwt unauthorizedHandler) {
+		this.userDetailsService = userDetailsService;
+		this.unauthorizedHandler = unauthorizedHandler;
+	}
+
+
+
+	@Bean
+	  public AuthTokenFilter authenticationJwtTokenFilter() {
+	    return new AuthTokenFilter();
+	  }
+
+}

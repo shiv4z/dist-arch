@@ -1,0 +1,8 @@
+package in.gov.egs.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name = "user-service")
+public interface FeignClientInterface {
+
+}

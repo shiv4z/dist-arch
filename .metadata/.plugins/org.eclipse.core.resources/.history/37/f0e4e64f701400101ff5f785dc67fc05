@@ -1,0 +1,19 @@
+package in.gov.egs.config;
+
+import org.springframework.cloud.client.loadbalancer.ServiceInstanceListSupplier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.ConfigurableApplicationContext;
+
+
+public class AppConfig {
+	
+	@Bean
+	public ServiceInstanceListSupplier discoveryClientServiceInstanceListSupplier(ConfigurableApplicationContext context) {
+	    return ServiceInstanceListSupplier.builder()
+	            .withDiscoveryClient()
+	            .withRoundRobin()
+	            .build(context);
+	}
+
+
+}

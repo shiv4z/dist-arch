@@ -1,0 +1,4 @@
+spring.application.name=API-GATEWAY-1
+
+app.jwt.secret=oJ12sYvJhKjOZ4iYQslcxGp6JStmVa+6rW0RwQjR4NM=
+app.jwt.expiration=3600000

@@ -1,0 +1,9 @@
+package in.gov.egs.payload.request;
+
+public class LoginRequest {
+	@NotBlank
+	private String username;
+
+	@NotBlank
+	private String password;
+}

@@ -1,0 +1,25 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: API-GATEWAY
+  datasource:
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: egs_demo 
+  main:
+     allow-bean-definition-overriding: true 
+     
+ 
+app:      
+  jwt:
+    secret: oJ12sYvJhKjOZ4iYQslcxGp6JStmVa+6rW0RwQjR4NM=  
+    expiration: 3600000

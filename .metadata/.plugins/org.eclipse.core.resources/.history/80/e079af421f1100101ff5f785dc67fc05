@@ -1,0 +1,5 @@
+package in.gov.egs.payload.response;
+
+public class JwtResponse {
+
+}

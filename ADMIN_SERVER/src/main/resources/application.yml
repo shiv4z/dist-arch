@@ -1,0 +1,22 @@
+server:
+ port: 1111
+  
+spring:
+  application:
+    name: ADMIN_SERVER
+    boot:
+    admin:
+      ui:
+        title: "Spring Boot Admin Server"
+        brand: "Admin Server"
+      notify:
+        mail:
+          to: "shivp1471@gmail.com"
+          from: "shivp1471@gmail.com"
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

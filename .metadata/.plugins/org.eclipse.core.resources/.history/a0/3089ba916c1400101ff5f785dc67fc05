@@ -1,0 +1,29 @@
+package in.gov.egs.ontroller;
+
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.gov.egs.serviceImpl.FeignClientService;
+
+@RestController
+public class HomeRestController {
+	
+    private FeignClientService feignService;
+    
+    private LoadBalancerClient loadBalancerClient;
+
+	public HomeRestController(FeignClientService feignService) {
+		this.feignService = feignService;
+	}
+    
+	
+	@GetMapping("/feignMsg")
+	public String getMessage() {
+		return feignService.getMsg();
+	}
+    
+	
+	
+
+}

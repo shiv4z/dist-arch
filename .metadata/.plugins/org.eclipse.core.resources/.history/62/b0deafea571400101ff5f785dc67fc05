@@ -1,0 +1,7 @@
+package in.gov.egs.feign;
+
+
+@FeignClient(name = "user-service")
+public interface FeignClientInterface {
+
+}

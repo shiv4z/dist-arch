@@ -1,0 +1,5 @@
+package in.gov.egs.config;
+
+public class ApplicationConfiguration {
+
+}

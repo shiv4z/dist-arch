@@ -1,0 +1,21 @@
+package in.gov.egs.config;
+
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import feign.Client;
+
+@Configuration
+public class AppConfig {
+	
+	@Bean
+	public Client feignClient(Client delegate) {
+	    return (request, options) -> {
+	        System.out.println("Feign is calling full URL: " + request.url());
+	        return delegate.execute(request, options);
+	    };
+	}
+
+}

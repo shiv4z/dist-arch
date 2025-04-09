@@ -1,0 +1,23 @@
+package in.gov.egs.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class WelcomeRestController {
+	
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		System.out.println("========================REST-SERVICES CALL===========================");
+		return "Welcome to the Rest-Service";
+	}
+	
+	
+	@GetMapping("/test")
+	public String test() {
+		System.out.println("========================REST-SERVICES CALL===========================");
+		return "This is for testing only";
+	}
+
+}

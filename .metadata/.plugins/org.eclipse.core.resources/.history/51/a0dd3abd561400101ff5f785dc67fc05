@@ -1,0 +1,100 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: API-GATEWAY-1
+  datasource:
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: egs_demo 
+  main:
+     allow-bean-definition-overriding: true 
+     
+  
+  boot:
+    admin:
+      client:
+        url: 
+          - http://localhost:1111  
+        instance:
+          service-base-url: http://localhost:8088 
+
+        
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  
+          lower-case-service-id: true
+          
+      routes:
+        - id: REST-API-1
+          uri: lb://REST-API 
+          predicates:
+            - Path=/rest-api/**
+          filters:
+            - StripPrefix=1
+            - name: HeaderValidationFilter
+            - name: ResponseHeaderFilter
+            - AddRequestHeader=Gateway-Header, "Test-Gateway"
+            - AddRequestHeader=X-API-KEY, "rest-api-key-12345"
+            - AddRequestHeader=X-SECRET-KEY, "rest-api-key-98765"
+            
+        - id: REST-API-2
+          uri: lb://REST-API-1 
+          predicates:
+            - Path=/rest-api/**
+          filters:
+            - StripPrefix=1
+            - name: HeaderValidationFilter
+            - name: ResponseHeaderFilter
+            - AddRequestHeader=Gateway-Header, "Test-Gateway"
+            - AddRequestHeader=X-API-KEY, "rest-api-key-12345"
+            - AddRequestHeader=X-SECRET-KEY, "rest-api-key-98765"
+
+
+# Eureka Client Configuration
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+    
+
+# Zipkin Configuration
+management:
+   tracing:
+     sampling:
+       probability: 1.0
+   zipkin:
+     tracing:
+       endpoint: http://localhost:9411/api/v2/spans 
+       sender:
+         type: web
+
+   endpoints:
+     web:
+       exposure:
+         include: "*"
+   endpoint:
+    gateway:
+      enabled: true
+app:      
+  jwt:
+    secret: oJ12sYvJhKjOZ4iYQslcxGp6JStmVa+6rW0RwQjR4NM=  
+    expiration: 3600000

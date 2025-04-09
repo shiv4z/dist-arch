@@ -1,0 +1,7 @@
+package in.gov.egs.enumdel;
+
+public enum ERole {
+	USER,
+    ADMIN, 
+    TEST
+}

@@ -1,0 +1,11 @@
+app:
+  jwt:
+    expiration: 3600000
+    secret: oJ12sYvJhKjOZ4iYQslcxGp6JStmVa+6rW0RwQjR4NM=
+spring:
+  application:
+    name: API-GATEWAY-1
+  datasource:
+    password: podtgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
