@@ -1,5 +1,0 @@
-package in.gov.egs.security.jwt;
-
-public class AuthEntryPointJwt {
-
-}

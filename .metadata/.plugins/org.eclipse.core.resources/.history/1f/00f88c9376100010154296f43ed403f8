@@ -1,5 +1,0 @@
-package in.gov.egs.modal;
-
-public enum Role {
-
-}

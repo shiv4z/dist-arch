@@ -1,6 +1,0 @@
-package in.gov.egs.modal;
-
-public enum Role {
-	USER,
-    ADMIN
-}
