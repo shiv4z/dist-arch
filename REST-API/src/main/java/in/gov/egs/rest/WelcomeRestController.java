@@ -11,14 +11,16 @@ import in.gov.egs.log.TraceLogger;
 
 @RestController
 public class WelcomeRestController {
+	
 	@Autowired
 	private Environment env;
+	
 	@Autowired	
 	private TraceLogger traceLogger;
 	
 	@GetMapping("/welcome")
 	public String welcome(@RequestParam("name") String req) {
-		String property = env.getProperty("server.port");
+		String property = env.getProperty("local.server.port");
 		traceLogger.logPayload(req);
 		System.out.println("========================REST-SERVICES CALL===========================");
 		return "Welcome to the Rest-Service : "+property;

@@ -9,7 +9,7 @@ eureka:
     fetch-registry: false
     register-with-eureka: false
   instance:
-    hostname: localhost
+    hostname: ${HOSTNAME}
   server:
     enable-self-preservation: true
     eviction-interval-timer-in-ms: 60000

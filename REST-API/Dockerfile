@@ -16,4 +16,4 @@ COPY --from=build /build/target/REST-API-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "java -jar -Dserver.port=${PORT:-8080} app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
