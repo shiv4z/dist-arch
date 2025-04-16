@@ -103,7 +103,7 @@ services:
 
   api-gateway-1:
     build:
-      context: ./api-gateway-1
+      context: ./API-GATEWAY-1
       dockerfile: Dockerfile
     image: api-gateway
     container_name: api-gateway
