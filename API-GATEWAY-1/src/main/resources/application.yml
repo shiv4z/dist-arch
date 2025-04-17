@@ -24,9 +24,9 @@ spring:
     admin:
       client:
         url: 
-          - http://host.docker.internal:1111  
+          - http://admin:1111  
         instance:
-          service-base-url: http://host.docker.internal:8088 
+          service-base-url: http://api-gateway:8088 
 
         
   cloud:
