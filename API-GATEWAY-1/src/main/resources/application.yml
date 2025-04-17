@@ -14,7 +14,8 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        default_schema: egs_demo 
+        default_schema: egs_demo
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   main:
      allow-bean-definition-overriding: true 
      
