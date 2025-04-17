@@ -26,7 +26,8 @@ spring:
         url: 
           - http://host.docker.internal:1111  
         instance:
-          service-base-url: http://host.docker.internal:8088 
+          service-base-url: http://host.docker.internal:8088
+          prefer-ip: false
 
         
   cloud:
